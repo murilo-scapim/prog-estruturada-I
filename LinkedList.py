@@ -5,7 +5,7 @@ class LinkedList:
     def __init__(self):
         self.head = None
 
-    # insere no final
+    #  inserir no final
     def append(self, data):
         new_node = Node(data)
 
@@ -44,13 +44,26 @@ class LinkedList:
         while current_node.next and current_node.next.data != data:
             current_node = current_node.next
 
-            if curent_node.next:
-                current_node.next = current_node.next.next
-            else:
-                return 'Elemento não econtrado'
-            
-    # Implementar para próxima aula
-    # def print_list(self):
+        if current_node.next:
+            current_node.next = current_node.next.next
+        else:
+            return 'Elemento não encontrado'
+
+    def print_list(self):
+        current = self.head
+        while current is not None:
+            print(current.data)
+            current = current.next
+
+    def search(self, data):
+        current = self.head
+        while current is not None:
+            if current.data == data:
+                return 'Elemento encontrado'
+            current = current.next
+        return 'Elemento não encontrado'
+    
+    # def add_at_position(self, data, position):
 
 
 linked_list = LinkedList()
@@ -60,3 +73,7 @@ linked_list.append('Kiwi')
 linked_list.prepend('Melancia')
 
 linked_list.delete('Kiwi')
+
+linked_list.print_list()
+
+print(linked_list.search('Melancia'))
