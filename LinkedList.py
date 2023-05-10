@@ -79,6 +79,27 @@ class LinkedList:
 
             new_node.next = current.next
             current.next = new_node
+    
+    # remove nodes pares para lista encadeada de números
+    def remove_even(self):
+    # verifica se a lista está vazia
+    if self.head is None:
+        return 'Lista vazia'
+
+    while self.head is not None and self.head.data % 2 == 0:
+        self.head = self.head.next
+
+    # verifica se lista ficou vazia
+    if self.head is None:
+        return 'Lista vazia'
+
+    current = self.head
+    while current.next is not None:
+        if current.next % 2 == 0:
+            current.next = current.next.next
+        else:
+            current = current.next
+
 
 linked_list = LinkedList()
 linked_list.append('Pera')
