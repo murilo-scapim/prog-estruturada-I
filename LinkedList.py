@@ -63,8 +63,22 @@ class LinkedList:
             current = current.next
         return 'Elemento não encontrado'
     
-    # def add_at_position(self, data, position):
+    # add em posição específica
+    def add_at_position(self, data, position):
+        new_node = Node(data)
+        if position == 0:
+            new_node.next = self.head
+            self.head = new_node
+        else:
+            current = self.head
+            # o for percorre até a posição anterior a passada como param
+            for i in range(position - 1):
+                if current is None:
+                    return 'Posição inválida'
+                current = current.next
 
+            new_node.next = current.next
+            current.next = new_node
 
 linked_list = LinkedList()
 linked_list.append('Pera')
@@ -77,3 +91,7 @@ linked_list.delete('Kiwi')
 linked_list.print_list()
 
 print(linked_list.search('Melancia'))
+
+linked_list.add_at_position('Amora', 3)
+
+linked_list.print_list()
