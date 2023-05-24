@@ -1,3 +1,5 @@
+from Student import Student
+
 class HashMap:
     def __init__(self):
         self.buckets = [None for i in range(10)]
@@ -15,20 +17,21 @@ class HashMap:
         return self.buckets[address].name
 
     # atualizar o nome de um student
-    # def update(self, cod, new_name):
+    def update(self, cod, new_name):
+        address = self.hash_function(cod)
+        student = self.buckets[address]
+        student.name = new_name
 
 
 student1 = Student(14, "João")
 student2 = Student(23, "Maria")
-student3 = Student(12, "Teste")
+student3 = Student(12, "Paulo")
 
 hashmap = HashMap()
 hashmap.insert(student1)
 hashmap.insert(student2)
 hashmap.insert(student3)
 
-# print(hashmap.buckets)
-
-# print(hashmap.get(12))
-# hashmap.update(12, "Nome atualizado")
-# print(hashmap.get(12))
+print(hashmap.get(12))
+hashmap.update(12, "Paulo atualizado")
+print(hashmap.get(12))
