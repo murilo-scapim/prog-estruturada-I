@@ -1,16 +1,30 @@
 from Student import Student
+from Node import Node
 
 class HashMap:
     def __init__(self):
-        self.buckets = [None for i in range(10)]
+        self.buckets = [None for i in range(10)]  # compartimentos
 
     # resulta em endereços de 0 a 9
     def hash_function(self, cod):
         return cod % 10
 
+    # def insert(self, student):
+    #     address = self.hash_function(student.cod)
+    #     self.buckets[address] = student
+
+    # separate chaining
+    # tratando colisões com listas ligadas
     def insert(self, student):
         address = self.hash_function(student.cod)
-        self.buckets[address] = student
+        new_node = Node(student)
+        if self.buckets[address] is None:
+            self.buckets[address] = new_node
+        else:
+            current = self.buckets[address]
+            while current.next:
+                current = current.next
+            current.next = new_node
 
     def get(self, cod):
         address = self.hash_function(cod)
