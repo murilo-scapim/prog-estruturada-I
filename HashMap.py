@@ -26,15 +26,25 @@ class HashMap:
                 current = current.next
             current.next = new_node
 
+    # def get(self, cod):
+    #     address = self.hash_function(cod)
+    #     return self.buckets[address].name
+
     def get(self, cod):
         address = self.hash_function(cod)
-        return self.buckets[address].name
+        current = self.buckets[address]
+
+        while current:
+            if current.data.cod == cod:
+                return current.data.name
+            current = current.next
+        return None
 
     # atualizar o nome de um student
-    def update(self, cod, new_name):
-        address = self.hash_function(cod)
-        student = self.buckets[address]
-        student.name = new_name
+    # def update(self, cod, new_name):
+    #     address = self.hash_function(cod)
+    #     student = self.buckets[address]
+    #     student.name = new_name
 
 
 student1 = Student(14, "João")
@@ -47,5 +57,4 @@ hashmap.insert(student2)
 hashmap.insert(student3)
 
 print(hashmap.get(12))
-hashmap.update(12, "Paulo atualizado")
-print(hashmap.get(12))
+# hashmap.update(12, "Paulo atualizado")
